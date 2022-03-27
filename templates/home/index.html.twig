@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<div style="display: flex; ">
+		{% block aside %}
+			<div class="list-group" style="width: 260px; margin-right: 20px">
+				<a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+					All
+				</a>
+				{% for item in categories %}
+					<a href="#" class="list-group-item list-group-item-action">{{ item.Name }}</a>
+				{% endfor %}
+
+			</div>
+		{% endblock %}
+		{% block content %}
+			<div style="width: 100%;display: flex; justify-content: space-between; flex-wrap: wrap;">
+				{% for food in foods %}
+					<div class="card" style="width: 18rem; margin-bottom: 20px">
+						<img src="{{ asset('uploads/images/products/'~food.image) }}" class="card-img-top" alt="image">
+						<div class="card-body">
+							<h5 class="card-title">{{food.name}}</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<h6 class="card-subtitle mb-2 text-muted">Price:
+								{{food.price}}DT</h6>
+							<a href="{{ path('app_order_new', {id: food.id}) }}" class="btn btn-primary">Order</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

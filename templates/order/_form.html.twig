@@ -1,0 +1,29 @@
+<div style=" min-height: 50vh;display: flex;flex-direction: column; justify-content: center; align-items: center; margin: 0 0 30px 0;">
+	<div style="width: 400px;">
+		{{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+		<div class="col-12">
+			<label>Food</label>
+			<input type="text" value="{{order.food}}" class="form-control frm-input" disabled>
+		</div>
+		<div class="col-12">
+			{{ form_label(form.Qty) }}
+			<div class="form-error">
+				{{ form_errors(form.Qty) }}
+			</div>
+			{{ form_widget(form.Qty, {'attr': {'class': 'form-control frm-input'}}) }}
+			<small>{{ form_help(form.Qty) }}</small>
+		</div>
+		<div class="col-12">
+			{{ form_label(form.address) }}
+			<div class="form-error">
+				{{ form_errors(form.address) }}
+			</div>
+			{{ form_widget(form.address, {'attr': {'class': 'form-control frm-input'}}) }}
+			<small>{{ form_help(form.address) }}</small>
+		</div>
+		<a style="width: 120px;" class="btn btn-primary" href="{{ path('app_order_index') }}">Back to list</a>
+		<button style="width: 80px; margin: 16px 0 0 10px;" class="btn btn-primary">{{ button_label|default('Order') }}</button>
+		{{ form_end(form) }}
+
+	</div>
+</div>

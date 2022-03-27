@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order
+{% endblock %}
+
+{% block body %}
+	<h1>Order</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Food</th>
+				<td>{{ order.food }}</td>
+			</tr>
+			<tr>
+				<th>Qty</th>
+				<td>{{ order.Qty }}</td>
+			</tr>
+			<tr>
+				<th>Address</th>
+				<td>{{ order.address }}</td>
+			</tr>
+			<tr>
+				<th>OrderAt</th>
+				<td>{{ order.orderAt ? order.orderAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<td>{{ order.Qty * order.food.getPrice() }}DT</td>
+			</tr>
+			<tr>
+				<th>State</th>
+				<td>
+					{% if order.isDelivred %}
+						<div class="p-1 bg-success text-white" style="width: fit-content; border-radius: 4px;">Delivred</div>
+					{% else %}
+						<div class="p-1 bg-danger text-white" style="width: fit-content; border-radius: 4px;">Prepared</div>
+					{% endif %}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div style="display: flex;">
+		<a class="btn btn-primary" href="{{ path('app_order_index') }}">back to list</a>
+
+		<a class="btn btn-primary" href="{{ path('app_order_edit', {'id': order.id}) }}" style="margin: 0 10px">edit</a>
+
+		{{ include('order/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

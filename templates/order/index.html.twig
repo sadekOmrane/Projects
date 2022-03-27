@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order index
+{% endblock %}
+
+{% block body %}
+	<div style="min-height: 70vh;">
+		<h1>Order index</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Food</th>
+					<th>Qty</th>
+					<th>Address</th>
+					<th>OrderAt</th>
+					<th>Total</th>
+					<th>State</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+					<tr>
+						<td>{{ order.food }}</td>
+						<td>{{ order.Qty }}</td>
+						<td>{{ order.address }}</td>
+						<td>{{ order.orderAt ? order.orderAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ order.Qty * order.food.getPrice() }}DT</td>
+						<td>
+							{% if order.isDelivred %}
+								<div class="p-1 bg-success text-white" style="width: fit-content; border-radius: 4px;">Delivred</div>
+							{% else %}
+								<div class="p-1 bg-danger text-white" style="width: fit-content; border-radius: 4px;">Prepared</div>
+							{% endif %}
+						</td>
+
+						<td>
+							<a class="btn btn-primary" href="{{ path('app_order_show', {'id': order.id}) }}">Show</a>
+							<a class="btn btn-primary" href="{{ path('app_order_edit', {'id': order.id}) }}">Edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

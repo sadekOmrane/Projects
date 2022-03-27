@@ -1,0 +1,14 @@
+.frm-input {
+  margin-bottom: 10px;
+}
+
+.frm {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  width: 800px;
+}
